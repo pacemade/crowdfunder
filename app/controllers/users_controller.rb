@@ -11,7 +11,7 @@ class UsersController < ApplicationController
     @user.password = params[:user][:password]
     @user.password_confirmation = params[:user][:password_confirmation]
     if @user.save
-      auto_login(@user)
+      session[:user_id] = @user.id
       redirect_to projects_url
     else
       render 'new'
