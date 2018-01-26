@@ -7,7 +7,7 @@ class Pledge < ApplicationRecord
   validate :owner_cannot_back
 
   def owner_cannot_back
-    if user == project.user
+    if project && user == project.user
       errors.add(:base, "Owner should not be able to pledge towards own project")
     end
   end
