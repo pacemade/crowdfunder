@@ -1,5 +1,5 @@
 class ProjectsController < ApplicationController
-  before_action :require_login, only: [:new, :create]
+  # before_action :require_login, only: [:new, :create]
 
   def index
     @projects = Project.all
@@ -27,7 +27,9 @@ class ProjectsController < ApplicationController
     if @project.save
       redirect_to projects_url
     else
+      flash[:notice] = "There was an error with your form. Please try again."
       render :new
+
     end
    end
 
