@@ -16,11 +16,4 @@ class PledgesController < ApplicationController
     end
   end
 
-  def require_login
-    unless current_user
-      flash[:alert] = ["You must be logged in to create or view reservations"]
-      redirect_to login_path
-    end
-  end
-
 end

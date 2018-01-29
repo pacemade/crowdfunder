@@ -13,4 +13,11 @@ class ApplicationController < ActionController::Base
   def not_authenticated
     redirect_to login_path, alert: "Please login first"
   end
+
+  def require_login
+    unless current_user
+      flash[:alert] = "You must be logged in to create or donate."
+      redirect_to login_path
+    end
+  end
 end
