@@ -3,6 +3,11 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
+  def show
+    @projects = current_user.backed_projects.uniq
+    @pledges = current_user.pledges
+  end
+
   def create
     @user = User.new
     @user.first_name = params[:user][:first_name]
@@ -17,4 +22,7 @@ class UsersController < ApplicationController
       render 'new'
     end
   end
+
+
+
 end
