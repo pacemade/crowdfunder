@@ -1,19 +1,20 @@
-<h1>User: <%= current_user.first_name %></h1>
+
+<h1>User: <%= @user.first_name %></h1>
 
 
 <h2>Projects Backed:</h2>
   <ul>
-  <% @projects.each do |project| %>
+  <% @user.backed_projects.uniq.each do |project| %>
     <li><%= project.title %></li>
   <% end %>
   </ul>
 
 
-<h2>Total Amount Pledged: <%= current_user.sum_of_pledges %></h2>
+<h2>Total Amount Pledged: <%= @user.sum_of_pledges %></h2>
 
-<h2>My Projects:</h2>
+<h2>Projects:</h2>
   <ul>
-    <% current_user.projects.each do |project| %>
+    <% @user.projects.each do |project| %>
       <li><%= project.title %></li>
     <% end %>
   </ul>

@@ -4,8 +4,8 @@ class UsersController < ApplicationController
   end
 
   def show
-    @projects = current_user.backed_projects.uniq
-    @pledges = current_user.pledges
+    @user = User.find(params[:id])
+    @pledges = @user.pledges
   end
 
   def create
