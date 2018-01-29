@@ -19,6 +19,7 @@ class UsersController < ApplicationController
       session[:user_id] = @user.id
       redirect_to projects_url
     else
+      flash[:notice] = "There was an error with your form. Please try again."
       render 'new'
     end
   end

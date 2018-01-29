@@ -1,3 +1,9 @@
+<ul>
+<% @user.errors.full_messages.each do |error| %>
+  <li><%= error %></li>
+<% end %>
+</ul>
+
 <%= form_for @user do |f| %>
   <div class="field">
      <%= f.label :first_name %><br />
