@@ -25,6 +25,19 @@
   <%= "#{time_ago_in_words(@project.end_date)} #{( @project.end_date > Time.now.utc ) ? 'remaining' : 'past deadline'}" %>
 </time>
 
+<% if @project.user == current_user %>
+<h2>People who have donated to your Project</h2>
+
+  <% @project.users.each do |user| %>
+    <p> <%= user.first_name %></p>
+  <% end %>
+<% end %>
+
+<% if @project.user == current_user %>
+
+<% end %>
+
+
 <h2>Rewards</h2>
 <% @project.rewards.each do |reward| %>
   <p><%= number_to_currency(reward.dollar_amount) %></p>
