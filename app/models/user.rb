@@ -27,9 +27,9 @@ class User < ActiveRecord::Base
   #   end
   # end
 
-  def sum_of_pledges
-    pledges.sum(&:dollar_amount)
-  end
+  # def sum_of_pledges
+  #   pledges.sum(&:dollar_amount)
+  # end
 
   def sum_of_pledges
     # pledges.sum(&:dollar_amount)

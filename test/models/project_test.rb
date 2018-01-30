@@ -32,12 +32,32 @@ class ProjectTest < ActiveSupport::TestCase
 
   def new_user
     User.new(
-      first_name:            'Sally',
+      first_name:            Faker::Name.first_name,
       last_name:             'Lowenthal',
-      email:                 'sally@example.com',
+      email:                 Faker::Internet.free_email,
       password:              'passpass',
       password_confirmation: 'passpass'
     )
   end
 
+  def test_already_pledge_returns_true
+    user = new_user
+    user.save!
+    user2 = new_user
+    user2.save!
+    project = new_project
+    project.user = user
+    project.save!
+    pledge = Pledge.new(
+      dollar_amount: 100,
+      user: user2,
+      project: project
+    )
+    pledge.save!
+
+    actual = project.already_pledged?(user2)
+    expected = true
+
+    assert_equal(expected, actual)
+  end
 end
