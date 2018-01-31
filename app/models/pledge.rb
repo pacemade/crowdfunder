@@ -21,5 +21,6 @@ class Pledge < ApplicationRecord
       end
     end
   end
+  
 
 end

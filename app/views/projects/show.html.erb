@@ -4,10 +4,6 @@
   <%= image_tag @project.image %>
 <% end %>
 
-<% if @project.already_pledged?(current_user) %>
-  You have already backed this project!!
-<% end %>
-
 <p><%= @project.description %></p>
 <p>Created by: <%= link_to @project.user.first_name, user_path(@project.user)%></p>
 <p>Goal: <%= number_to_currency(@project.goal) %></p>
