@@ -34,4 +34,8 @@ class ProjectsController < ApplicationController
     end
    end
 
+   def task_params
+     params.require[:project].permit(:title, :description, :goal, :user_id, :term)
+   end
+
 end

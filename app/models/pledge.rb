@@ -4,7 +4,7 @@ class Pledge < ApplicationRecord
   belongs_to :backed_project, class_name: 'Project', foreign_key: :project_id
 
   validates :dollar_amount, presence: true
-  validates :dollar_amount, :numericality => { :greater_than_or_equal_to => 0 } 
+  validates :dollar_amount, :numericality => { greater_than: 0 } 
   validates :user, presence: true
   validate :owner_cannot_back
 
