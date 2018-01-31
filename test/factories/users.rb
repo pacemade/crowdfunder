@@ -4,5 +4,6 @@ FactoryGirl.define do
     last_name {["Brad", "Chad", "Blake", "Lazer", "Blazer"].sample}
     sequence(:email) { |n| "bitchin#{n}@gmail.com" }
     password "password"
+    password_confirmation "password"
   end
 end

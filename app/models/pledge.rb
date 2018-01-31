@@ -13,4 +13,13 @@ class Pledge < ApplicationRecord
       errors.add(:base, "Owner should not be able to pledge towards own project")
     end
   end
+
+  def reward_check
+    project.rewards.order(dollar_amount: :desc).each do |reward|
+      if dollar_amount >= reward.dollar_amount
+        return reward
+      end
+    end
+  end
+
 end
