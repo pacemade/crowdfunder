@@ -6,4 +6,13 @@ class Project < ActiveRecord::Base
 
   validates :user_id, :title, :description, :goal, :start_date, :end_date, presence: true
 
+
+  def self.search(term)
+    if term
+      where("title ILIKE ?", "%#{term}%")
+    else
+      all
+    end
+  end
+
 end
