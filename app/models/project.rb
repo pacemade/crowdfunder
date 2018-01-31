@@ -10,4 +10,12 @@ class Project < ActiveRecord::Base
     # user_ids.include?(user.id)
     users.include?(user)
   end
+
+  def self.search(term)
+    if term
+      where("title ILIKE ?", "%#{term}%")
+    else
+      all
+    end
+  end
 end
