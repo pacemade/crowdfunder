@@ -39,6 +39,21 @@
   <% end %>
 <% end %>
 
+<% if  @project.user == current_user %>
+  <%= form_for([@project, @progress_update]) do |f| %>
+    <div>
+    <%= f.label :Add_Progress %>
+    <%= f.text_area :content %>
+
+    <%= f.submit %>
+    </div>
+  <% end %>
+<% end %>
+
+<h2>Progress Updates</h2>
+<% @progress_updates.each do |update| %>
+  <p><%= update.content %></p>
+<% end %>
 
 <h2>Rewards</h2>
 <% @project.rewards.each do |reward| %>
