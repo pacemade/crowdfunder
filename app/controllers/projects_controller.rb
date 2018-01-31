@@ -4,6 +4,7 @@ class ProjectsController < ApplicationController
   def index
     @projects = Project.all
     @projects = @projects.order(:end_date)
+    @projects = Project.search(params[:term])
   end
 
   def show
