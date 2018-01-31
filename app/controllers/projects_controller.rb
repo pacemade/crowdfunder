@@ -4,6 +4,7 @@ class ProjectsController < ApplicationController
   def index
     @projects = Project.all
     @projects = @projects.order(:end_date)
+    @projects = Project.search(params[:term])
   end
 
   def show
@@ -35,6 +36,10 @@ class ProjectsController < ApplicationController
       render :new
 
     end
+   end
+
+   def task_params
+     params.require[:project].permit(:title, :description, :goal, :user_id, :term)
    end
 
 end
