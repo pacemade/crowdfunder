@@ -14,7 +14,12 @@ class Pledge < ApplicationRecord
     end
   end
 
-  # def reward_check
-# end
+  def reward_check
+    project.rewards.order(dollar_amount: :desc).each do |reward|
+      if dollar_amount >= reward.dollar_amount
+        return reward
+      end
+    end
+  end
 
 end

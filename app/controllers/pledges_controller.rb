@@ -9,8 +9,8 @@ class PledgesController < ApplicationController
     @pledge.user = current_user
 
     if @pledge.save
-      # reward check
-      redirect_to project_url(@project), notice: "You have successfully backed #{@project.title}!"
+      @pledge.reward_check
+      redirect_to project_url(@project), notice: "You have successfully backed #{@project.title} and earned the #{@pledge.reward_check.description} reward!"
     else
       flash.now[:alert] = @pledge.errors.full_messages.first
       render 'projects/show'
