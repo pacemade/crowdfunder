@@ -13,30 +13,33 @@
 <h2>Total Amount Pledged: <%= current_user.sum_of_pledges %></h2>
 
 <h2>My Projects:</h2>
+<% if current_user.projects.any? %>
+
   <ul>
     <% current_user.projects.each do |project| %>
       <li><%= project.title %></li>
     <% end %>
   </ul>
+  <% else %>
+    <h3>You dont have any projects!</h3>
+  <% end %>
 
-<h2>My Backers:</h2>
-  <ul>
-    <% current_user.projects.each do |project| %>
-      <% project.pledges.each do |pledge| %>
-        <li><%= pledge.user.first_name %> for <%= number_to_currency(pledge.dollar_amount) %></li>
+  <h2>My Backers:</h2>
+    <ul>
+      <% current_user.projects.each do |project| %>
+        <% project.pledges.each do |pledge| %>
+          <li><%= pledge.user.first_name %> for <%= number_to_currency(pledge.dollar_amount) %></li>
+        <% end %>
       <% end %>
-    <% end %>
-  </ul>
+    </ul>
 
 <% else %>
 
-<h1>User: <%= @user.first_name %></h1>
-
-<h2>Projects:</h2>
-  <ul>
-    <% @user.projects.each do |project| %>
-      <li><%= project.title %></li>
-    <% end %>
-  </ul>
-
+  <h1>User: <%= @user.first_name %></h1>
+  <h2>Projects:</h2>
+    <ul>
+      <% @user.projects.each do |project| %>
+        <li><%= project.title %></li>
+      <% end %>
+    </ul>
 <% end %>

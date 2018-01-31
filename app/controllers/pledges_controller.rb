@@ -9,6 +9,7 @@ class PledgesController < ApplicationController
     @pledge.user = current_user
 
     if @pledge.save
+      # reward check
       redirect_to project_url(@project), notice: "You have successfully backed #{@project.title}!"
     else
       flash.now[:alert] = @pledge.errors.full_messages.first
