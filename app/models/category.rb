@@ -1,4 +1,4 @@
 class Category < ApplicationRecord
-  # belongs_to :projects
+  belongs_to :projects
 
 end

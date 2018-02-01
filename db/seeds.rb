@@ -2,6 +2,7 @@ Pledge.destroy_all
 Reward.destroy_all
 User.destroy_all
 Project.destroy_all
+Category.destroy_all
 
 5.times do
   User.create!(
@@ -34,9 +35,23 @@ end
 20.times do
   project = Project.all.sample
 
+# binding.pry
   Pledge.create!(
-    user: User.all.sample,
+    user: (User.all - [project.user]).sample,
     project: project,
     dollar_amount: project.rewards.sample.dollar_amount + rand(10)
   )
 end
+
+
+  Category.create!(
+  title: "science"
+)
+
+  Category.create!(
+    title: "art"
+)
+
+Category.create!(
+title: "technology"
+)
