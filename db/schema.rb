@@ -10,16 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20180201184026) do
-=======
-ActiveRecord::Schema.define(version: 20180201151158) do
->>>>>>> 2c73910bd33e45c22027e72c738c08775ddd55ed
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-<<<<<<< HEAD
   create_table "add_category_to_projects", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -28,11 +23,13 @@ ActiveRecord::Schema.define(version: 20180201151158) do
 
   create_table "categories", force: :cascade do |t|
     t.string "title"
-=======
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "comments", force: :cascade do |t|
     t.integer "project_id"
     t.text "text"
->>>>>>> 2c73910bd33e45c22027e72c738c08775ddd55ed
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
