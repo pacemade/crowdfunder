@@ -9,6 +9,10 @@ class ProjectsController < ApplicationController
 
   def show
     @project = Project.find(params[:id])
+    @progress_update = ProgressUpdate.new
+    @progress_updates = @project.progress_updates
+    @comment = Comment.new
+    @comments = @project.comments
   end
 
   def new

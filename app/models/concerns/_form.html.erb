@@ -1,4 +1,11 @@
 <%= form_for(@project, html: {multipart: true}) do |f| %>
+
+  <ul>
+  <% @project.errors.full_messages.each do |error| %>
+    <li><%= error %></li>
+  <% end %>
+  </ul>
+
   <div>
     <%= f.label :title %>
     <%= f.text_field :title %>

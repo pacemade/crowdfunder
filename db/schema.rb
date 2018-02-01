@@ -10,10 +10,32 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170914203324) do
+<<<<<<< HEAD
+ActiveRecord::Schema.define(version: 20180201184026) do
+=======
+ActiveRecord::Schema.define(version: 20180201151158) do
+>>>>>>> 2c73910bd33e45c22027e72c738c08775ddd55ed
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+<<<<<<< HEAD
+  create_table "add_category_to_projects", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "categories", force: :cascade do |t|
+    t.string "title"
+=======
+  create_table "comments", force: :cascade do |t|
+    t.integer "project_id"
+    t.text "text"
+>>>>>>> 2c73910bd33e45c22027e72c738c08775ddd55ed
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "pledges", id: :serial, force: :cascade do |t|
     t.integer "user_id"
@@ -23,6 +45,13 @@ ActiveRecord::Schema.define(version: 20170914203324) do
     t.bigint "project_id"
     t.index ["project_id"], name: "index_pledges_on_project_id"
     t.index ["user_id"], name: "index_pledges_on_user_id"
+  end
+
+  create_table "progress_updates", force: :cascade do |t|
+    t.integer "project_id"
+    t.text "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "projects", id: :serial, force: :cascade do |t|
@@ -43,6 +72,8 @@ ActiveRecord::Schema.define(version: 20170914203324) do
     t.float "dollar_amount"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer "reward_count", default: 0
+    t.integer "reward_max", default: 0
   end
 
   create_table "users", id: :serial, force: :cascade do |t|

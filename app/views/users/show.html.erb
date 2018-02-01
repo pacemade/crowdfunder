@@ -13,7 +13,9 @@
   <h2>Rewards Claimed</h2>
   <ul>
   <% current_user.pledges.each do |pledge| %>
-  <li><%= pledge.reward_check.description %></li>
+    <% pledge.reward_check.each do |reward|%>
+  <li><%= reward.description %></li>
+    <% end %>
   <% end %>
   </ul>
 
@@ -46,5 +48,3 @@
       <% end %>
     </ul>
 <% end %>
-
-<%= console %>
