@@ -10,7 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20180201151158) do
+=======
+ActiveRecord::Schema.define(version: 20180201151916) do
+>>>>>>> 9e4b551d387dfb82bf01badda26295a9ef317c2a
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -57,6 +61,8 @@ ActiveRecord::Schema.define(version: 20180201151158) do
     t.float "dollar_amount"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer "reward_count", default: 0
+    t.integer "reward_max", default: 0
   end
 
   create_table "users", id: :serial, force: :cascade do |t|
