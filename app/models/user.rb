@@ -10,6 +10,8 @@ class User < ActiveRecord::Base
   has_many :projects
   has_many :pledges
   has_many :backed_projects, through: :pledges
+  has_many :comments
+  
   #  has_many :backed_projects, through: :pledges, class_name: 'Project', foreign_key: :project_id
 
 

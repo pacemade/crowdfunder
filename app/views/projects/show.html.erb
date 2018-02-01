@@ -46,9 +46,28 @@
   <% end %>
 <% end %>
 
-<h2>Progress Updates</h2>
-<% @progress_updates.each do |update| %>
-  <p><%= update.content %></p>
+<% if @project.users.include?(current_user) || @project.user == current_user %>
+  <h2>Progress Updates</h2>
+  <% @progress_updates.each do |update| %>
+    <p><%= update.content %></p>
+  <% end %>
+<% end %>
+
+<h3>Comments</h3>
+
+<% @comments.each do |comment| %>
+<p> <%= comment.text %> </p>
+<% end %>
+
+<% if @project.users.include?(current_user) %>
+  <% form_for([@project, @comment]) do |f| %>
+    <div>
+      <%= f.label :Add_Comment %>
+      <%= f.text_area :text %>
+
+      <%= f.submit %>
+    </div>
+  <% end %>
 <% end %>
 
 <h2>Rewards</h2>
