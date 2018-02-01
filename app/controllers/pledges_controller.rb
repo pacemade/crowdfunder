@@ -21,7 +21,6 @@ class PledgesController < ApplicationController
   end
 
   def already_pledged?(user)
-    # user_ids.include?(user.id)
     @project.pledges.pluck(:user_id).include?(current_user.id)
   end
 
