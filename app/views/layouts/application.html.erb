@@ -19,6 +19,7 @@
 
         <%= form_tag(projects_path, :method => "get", id: "search-form") do %>
           <%= text_field_tag :term, params[:term], placeholder: "Search Projects" %>
+          <%= select_tag 'category', options_for_select(Category.all.map) %>
           <%= submit_tag "Search", name: nil, :title => :project %>
         <% end %>
 
