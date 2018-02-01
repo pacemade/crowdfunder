@@ -29,7 +29,7 @@ class RewardTest < ActiveSupport::TestCase
     assert reward.new_record?, 'Reward should not save without a description'
   end
 
-  test 'A reward is returned when dollar amount pledged meets reward dollar amount' do
+  test 'A reward description is returned when dollar amount pledged meets reward dollar amount' do
     owner = create(:user)
     backer = create(:user)
     project = create(:project, user: owner)
