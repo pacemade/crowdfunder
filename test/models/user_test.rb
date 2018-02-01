@@ -25,4 +25,15 @@ class UserTest < ActiveSupport::TestCase
     user = build(:user, email: "bettymaker@gmail.com", password: "1234", password_confirmation: "1234")
     refute user.valid?
   end
+
+  test "sum of pledges correctly sums the pledges" do
+    user = build(:user)
+    project = build(:project)
+    pledge1 = build(:pledge, user: user, project: project, dollar_amount: 100)
+    pledge2 = build(:pledge, user: user, project: project, dollar_amount: 150)
+    pledge3 = build(:pledge, user: user, project: project, dollar_amount: 200)
+
+
+    assert 450, user.sum_of_pledges
+  end
 end
