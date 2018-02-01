@@ -17,19 +17,22 @@
 
       <nav class="site-nav">
 
-        <%= form_tag(projects_path, :method => "get", id: "search-form") do %>
-          <%= text_field_tag :term, params[:term], placeholder: "Search Projects" %>
-          <%= submit_tag "Search", name: nil, :title => :project %>
-        <% end %>
-
-        <%= link_to "Home", root_path %>
-        <% if current_user %>
-          <%= link_to "My Profile", user_path(current_user) %>
-          <%= link_to "Logout", :logout, method: :delete %>
-        <% else %>
-          <%= link_to "Register", new_user_path %> |
-          <%= link_to "Login", :login %>
-        <% end %>
+        <div class = "links">
+          <%= link_to "Home", root_path %>
+          <% if current_user %>
+            <%= link_to "My Profile", user_path(current_user) %>
+            <%= link_to "Logout", :logout, method: :delete %>
+          <% else %>
+            <%= link_to "Register", new_user_path %> |
+            <%= link_to "Login", :login %>
+          <% end %>
+        </div>
+        <div class = "search">
+          <%= form_tag(projects_path, :method => "get", id: "search-form") do %>
+            <%= text_field_tag :term, params[:term], placeholder: "Search Projects" %>
+            <%= submit_tag "Search", name: nil, :title => :project %>
+          <% end %>
+        </div>
       </nav>
     </header>
 

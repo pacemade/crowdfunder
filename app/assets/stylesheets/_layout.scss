@@ -4,8 +4,59 @@
 }
 
 .logo {
-  margin: 0;
+  margin: 15px 0 0 0;
   text-align: center;
   line-height: 50px;
-  font-size: 1.5rem;
+  font-size: 4rem;
+}
+
+.site-nav a{
+  text-decoration: none;
+  padding: 0 20px;
+  color: black;
+}
+
+.links {
+  float: left;
+}
+
+.search {
+  float: right;
+}
+
+.new_project_link a{
+  text-decoration: none;
+  padding: 20px 40px;
+  background-color: orange;
+  color: black;
+  clear: both;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.project-page {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.project-page h1 {
+  font-size: 40px;
+  text-align: center;
+  margin-top: 40px;
+  margin-bottom: 50px;
+}
+
+.info {
+  float: left;
+  width: 33.33%;
+}
+
+.progress {
+  float: left;
+  width: 33.33%;
+}
+
+.comments {
+  float: left;
+  width: 33.33%;
 }
