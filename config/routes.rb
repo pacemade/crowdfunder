@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     resources :pledges, only: [:create]
     resources :rewards, only: [:new, :create, :destroy]
     resources :progress_updates, only: [:create]
+    resources :comments
 
   end
   resources :users

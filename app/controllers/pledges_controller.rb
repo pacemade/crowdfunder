@@ -11,8 +11,7 @@ class PledgesController < ApplicationController
     if already_pledged?(current_user)
       flash.now[:alert] = "You have already backed this project!"
       render 'projects/show'
-    elsif @pledge.save
-      @pledge.reward_check
+    elsif @pledge.save && @pledge.reward_check
       redirect_to project_url(@project), notice: "You have successfully backed #{@project.title} and earned the #{@pledge.reward_check.description} reward!"
     else
       flash.now[:alert] = @pledge.errors.full_messages.first
@@ -21,7 +20,6 @@ class PledgesController < ApplicationController
   end
 
   def already_pledged?(user)
-    # user_ids.include?(user.id)
     @project.pledges.pluck(:user_id).include?(current_user.id)
   end
 

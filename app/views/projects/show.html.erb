@@ -1,66 +1,94 @@
-<h1><%= @project.title %></h1>
+<section class = "project-page">
+  <h1><%= @project.title %></h1>
 
-<% if @project.image.present? %>
-  <%= image_tag @project.image %>
-<% end %>
-
-<p><%= @project.description %></p>
-<p>Created by: <%= link_to @project.user.first_name, user_path(@project.user)%></p>
-<p>Goal: <%= number_to_currency(@project.goal) %></p>
-<p>Total Pledged: <%= number_to_currency(@project.pledges.pluck(:dollar_amount).sum) %></p>
-<p>Fundraising starts: <%= @project.start_date.strftime("%A %b %d %Y") %></p>
-<p>Deadline: <%= @project.end_date.strftime("%A %b %d %Y") %></p>
-
-<%= form_for [@project, Pledge.new] do |f| %>
-  <%= f.number_field :dollar_amount, value: @project.rewards.minimum(:dollar_amount), step: 0.01 %>
-  <%= f.submit "Pledge" %>
-<% end %>
-
-<time class="project-days-left">
-  <%= icon('clock-o') %>
-  <%= "#{time_ago_in_words(@project.end_date)} #{( @project.end_date > Time.now.utc ) ? 'remaining' : 'past deadline'}" %>
-</time>
-
-<% if @project.user == current_user %>
-<h2>People who have donated to your Project</h2>
-  <% @project.users.each do |user| %>
-    <p> <%= user.first_name %></p>
+  <% if @project.image.present? %>
+    <%= image_tag @project.image %>
   <% end %>
-<% end %>
 
-<% if @project.user == current_user %>
-  <h2>Rewards your backers have earned</h2>
-  <% @project.rewards.each do |reward| %>
-    <p> <%= reward.description %> </p>
+  <div class = "info">
+    <h2>What's this project all about? </h2>
+    <p> <%= @project.description %></p>
+    <p>Created by: <%= link_to @project.user.first_name, user_path(@project.user)%></p>
+    <p>Fundraising starts: <%= @project.start_date.strftime("%A %b %d %Y") %></p>
+    <p>Deadline: <%= @project.end_date.strftime("%A %b %d %Y") %></p>
+  </div>
+
+  <div class = "progress">
+
+    <% if @project.users.include?(current_user) || @project.user == current_user %>
+      <h2>Pledges</h2>
+      <p>Goal: <%= number_to_currency(@project.goal) %></p>
+      <p>Total Pledged: <%= number_to_currency(@project.pledges.pluck(:dollar_amount).sum) %></p>
+      <h3>What we have done with your money </h3>
+      <% @progress_updates.each do |update| %>
+        <p><%= update.content %></p>
+      <% end %>
+    <% end %>
+
+    <%= form_for [@project, Pledge.new] do |f| %>
+      <%= f.number_field :dollar_amount, value: @project.rewards.minimum(:dollar_amount), step: 0.01 %>
+      <%= f.submit "Pledge" %>
+    <% end %>
+
+    <time class="project-days-left">
+      <%= icon('clock-o') %>
+      <%= "#{time_ago_in_words(@project.end_date)} #{( @project.end_date > Time.now.utc ) ? 'remaining' : 'past deadline'}" %>
+    </time>
+
+    <% if @project.user == current_user %>
+    <h2>People who have donated to your Project</h2>
+      <% @project.users.each do |user| %>
+        <p> <%= user.first_name %></p>
+      <% end %>
+    <% end %>
+
+  <% if @project.user == current_user %>
+    <h2>Rewards your backers have earned</h2>
+    <% @project.rewards.each do |reward| %>
+      <p> <%= reward.description %> </p>
+    <% end %>
   <% end %>
-<% end %>
 
-<% if  @project.user == current_user %>
-  <%= form_for([@project, @progress_update]) do |f| %>
-    <div>
-    <%= f.label :Add_Progress %>
-    <%= f.text_area :content %>
+  <% if  @project.user == current_user %>
+    <%= form_for([@project, @progress_update]) do |f| %>
+      <div>
+      <%= f.label :Add_Progress %>
+      <%= f.text_area :content %>
 
-    <%= f.submit %>
-    </div>
+      <%= f.submit %>
+      </div>
+    <% end %>
   <% end %>
-<% end %>
+</div>
+  <div class = "comments">
+    <h2>Comments</h2>
 
-<h2>Progress Updates</h2>
-<% @progress_updates.each do |update| %>
-  <p><%= update.content %></p>
-<% end %>
+    <% @comments.each do |comment| %>
+    <p> <%= comment.text %> </p>
+    <% end %>
 
-<h2>Rewards</h2>
-<% @project.rewards.order(dollar_amount: :desc).each do |reward| %>
-  <p><%= number_to_currency(reward.dollar_amount) %></p>
-  <p><%= reward.description %></p>
+    <% if @project.users.include?(current_user) %>
+      <%= form_for([@project, @comment]) do |f| %>
+        <div>
+          <%= f.label :Add_Comment %>
+          <%= f.text_area :text %>
 
-  <p>
-    <small>
-      <%= link_to "Remove reward", project_reward_path(@project, reward), method: 'delete' %>
-    </small>
-  </p>
-<% end %>
+          <%= f.submit %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+  <h2>Rewards</h2>
+  <% @project.rewards.order(dollar_amount: :desc).each do |reward| %>
+    <p><%= number_to_currency(reward.dollar_amount) %></p>
+    <p><%= reward.description %></p>
 
-<%= link_to "Add new reward", new_project_reward_path(@project) %>
+    <p>
+      <small>
+        <%= link_to "Remove reward", project_reward_path(@project, reward), method: 'delete' %>
+      </small>
+    </p>
+  <% end %>
+
+  <%= link_to "Add new reward", new_project_reward_path(@project) %>
+</section>
