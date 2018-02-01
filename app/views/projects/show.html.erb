@@ -60,7 +60,7 @@
 <% end %>
 
 <% if @project.users.include?(current_user) %>
-  <% form_for([@project, @comment]) do |f| %>
+  <%= form_for([@project, @comment]) do |f| %>
     <div>
       <%= f.label :Add_Comment %>
       <%= f.text_area :text %>
