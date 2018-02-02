@@ -5,6 +5,7 @@ class ProjectsController < ApplicationController
     @projects = Project.all
     @projects = @projects.order(:end_date)
     @projects = Project.search(params[:term])
+    @categories = Category.all
   end
 
   def show
@@ -13,6 +14,7 @@ class ProjectsController < ApplicationController
     @progress_updates = @project.progress_updates
     @comment = Comment.new
     @comments = @project.comments
+    @categories = Category.all
   end
 
   def new

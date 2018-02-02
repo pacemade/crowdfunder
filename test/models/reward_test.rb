@@ -71,6 +71,7 @@ class RewardTest < ActiveSupport::TestCase
     assert_equal(expected, actual)
   end
 
+<<<<<<< HEAD
   # test "reward_check returns second reward if first reward count is maxed" do
   #   owner = create(:user)
   #   backer = create(:user)
@@ -99,4 +100,7 @@ class RewardTest < ActiveSupport::TestCase
   #   assert_equal(expected, actual)
   # end
 
+=======
+>>>>>>> 76c62534cf44ee211b768252f25c056115e2e860
+>>>>>>> dc76d54c7c60333a0c3d69f878c921b7e0db1237
 end

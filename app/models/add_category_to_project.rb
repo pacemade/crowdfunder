@@ -1,0 +1,2 @@
+class AddCategoryToProject < ApplicationRecord
+end

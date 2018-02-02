@@ -27,12 +27,15 @@
             <%= link_to "Login", :login %>
           <% end %>
         </div>
+
         <div class = "search">
           <%= form_tag(projects_path, :method => "get", id: "search-form") do %>
             <%= text_field_tag :term, params[:term], placeholder: "Search Projects" %>
+            <%= select_tag "category_id", options_for_select(@categories.map {|category| category.title}) %>
             <%= submit_tag "Search", name: nil, :title => :project %>
           <% end %>
         </div>
+
       </nav>
     </header>
 
