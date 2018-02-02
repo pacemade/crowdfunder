@@ -1,14 +1,18 @@
 class UsersController < ApplicationController
   def new
+    @categories = Category.all
     @user = User.new
   end
 
   def show
     @user = User.find(params[:id])
     @pledges = @user.pledges
+    @categories = Category.all
+
   end
 
   def create
+    @categories = Category.all
     @user = User.new
     @user.first_name = params[:user][:first_name]
     @user.last_name = params[:user][:last_name]

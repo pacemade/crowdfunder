@@ -2,11 +2,15 @@ class PledgesController < ApplicationController
   before_action :require_login
 
   def create
-    @project = Project.find(params[:project_id])
 
+    @progress_updates = ProgressUpdate.all
+    @project = Project.find(params[:project_id])
     @pledge = @project.pledges.build
     @pledge.dollar_amount = params[:pledge][:dollar_amount]
     @pledge.user = current_user
+    @comments = @project.comments
+    @comment = Comment.new
+    @categories = Category.all
 
     if already_pledged?(current_user)
       flash.now[:alert] = "You have already backed this project!"

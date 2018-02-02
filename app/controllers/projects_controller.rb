@@ -14,6 +14,7 @@ class ProjectsController < ApplicationController
     @progress_updates = @project.progress_updates
     @comment = Comment.new
     @comments = @project.comments
+    @categories = Category.all
   end
 
   def new
