@@ -15,7 +15,7 @@
 
   <div class = "progress">
 
-    <% if @project.users.include?(current_user) || @project.user == current_user %>
+    <% if false #@project.users.include?(current_user) || @project.user == current_user %>
       <h2>Pledges</h2>
       <p>Goal: <%= number_to_currency(@project.goal) %></p>
       <p>Total Pledged: <%= number_to_currency(@project.pledges.pluck(:dollar_amount).sum) %></p>
@@ -63,11 +63,11 @@
   <div class = "comments">
     <h2>Comments</h2>
 
-    <% @comments.each do |comment| %>
-    <p> <%= comment.text %> </p>
-    <% end %>
+    <% #@comments.each do |comment| %>
+    <p> <%# = comment.text %> </p>
+    <% # end %>
 
-    <% if @project.users.include?(current_user) %>
+    <% if false #@project.users.include?(current_user) %>
       <%= form_for([@project, @comment]) do |f| %>
         <div>
           <%= f.label :Add_Comment %>
